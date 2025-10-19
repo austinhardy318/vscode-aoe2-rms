@@ -53,7 +53,7 @@ Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support for VS Code 
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+
 - VS Code 1.85.0+
 - Docker (optional, for containerized builds)
 

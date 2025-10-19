@@ -20,7 +20,7 @@ The project uses GitHub Actions for automated testing, building, and deployment.
 
 #### Test Extension
 
-- **Matrix Strategy**: Tests on Ubuntu, Windows, and macOS with Node.js 18 and 20
+- **Matrix Strategy**: Tests on Ubuntu, Windows, and macOS with Node.js 20 and 22
 - **Steps**:
   - Checkout repository
   - Setup Node.js with npm caching
