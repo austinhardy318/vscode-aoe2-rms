@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.0] - 2024-12-19
+## [1.2.0] - 2025-10-19
 
 ### Added
 
@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Performance**: 98% reduction in file count, 96% reduction in package size
 - **Compatibility**: Maintains full backward compatibility with existing RMS files
 
-## [1.1.0] - 2024-12-19
+## [1.1.0] - 2025-10-18
 
 ### Added
 
@@ -57,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Package Size**: Slightly increased due to additional theme
 - **Compatibility**: Maintains full backward compatibility
 
-## [1.0.0] - 2024-12-19
+## [1.0.0] - 2025-10-18
 
 ### Added
 
