@@ -10,7 +10,7 @@ This is a modernized fork of the original [AoE2 Random Map Scripting extension](
 
 - **Modern VS Code API support** (v1.85.0+)
 - **Updated TypeScript** (v5.3+)
-- **Modern Language Server Protocol** (v8.x)
+- **Modern Language Server Protocol** (v4.2.1)
 - **Enhanced error handling** and diagnostics
 - **Code quality tools** (ESLint, Prettier)
 - **Improved build system**
@@ -42,10 +42,12 @@ This is a modernized fork of the original [AoE2 Random Map Scripting extension](
 ### 1.0.0 (Modernized Fork)
 
 - **Major modernization** - Updated for modern VS Code (v1.85.0+)
-- **Updated dependencies** - TypeScript 5.3+, modern LSP libraries
+- **Updated dependencies** - TypeScript 5.3.3, modern LSP libraries (v4.2.1)
 - **Enhanced tooling** - ESLint, Prettier, improved build system
+- **Docker build system** - Consistent, reproducible builds
 - **Better error handling** - Graceful parsing error handling
-- **Publishing ready** - Available on Open VSX Registry and Cursor Marketplace
+- **Code quality** - Professional documentation without emojis
+- **Publishing ready** - Built extension package available
 
 ### Original Extension History
 
@@ -58,6 +60,7 @@ This fork is based on the original extension by Mangudai. See the [original repo
 - Node.js 18+ 
 - npm or yarn
 - VS Code 1.85.0+
+- Docker Desktop (for Docker builds)
 
 ### Setup
 
@@ -115,6 +118,14 @@ npm run package
 
 See [BUILD.md](BUILD.md) for detailed build instructions.
 
+### Built Extension
+
+The extension is pre-built and ready for installation:
+- **Package**: `aoe2-rms-1.0.0.vsix` (1.16 MB)
+- **Publisher**: `austinhardy318`
+- **Extension ID**: `aoe2-rms`
+- **Display Name**: `AoE2 RMS Syntax`
+
 ### Project Structure
 
 ```
@@ -129,7 +140,16 @@ See [BUILD.md](BUILD.md) for detailed build instructions.
 │   └── package.json
 ├── aoe2-rms.tmLanguage     # Syntax highlighting
 ├── language-configuration.json
-└── package.json            # Extension manifest
+├── package.json            # Extension manifest
+├── Dockerfile              # Docker build configuration
+├── build-docker.bat        # Windows build script
+├── build-docker.sh         # Linux/macOS build script
+├── BUILD.md                # Build documentation
+├── CHANGELOG.md            # Version history
+├── .eslintrc.json          # ESLint configuration
+├── .prettierrc             # Prettier configuration
+├── .editorconfig           # Editor configuration
+└── .vscodeignore           # Package ignore rules
 ```
 
 ## Credits
