@@ -25,7 +25,7 @@ The `test.rms` file contains various RMS syntax elements to test:
 1. Open VS Code
 2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
 3. Type: `Extensions: Install from VSIX...`
-4. Select: `output/aoe2-rms-1.0.0.vsix`
+4. Select: `output/aoe2-rms-1.1.0.vsix`
 
 ### 2. Open Test File
 

@@ -64,7 +64,7 @@ The Docker build process:
 
 After a successful build, you'll have:
 
-- `aoe2-rms-1.0.0.vsix` - The packaged extension ready for installation
+- `aoe2-rms-1.1.0.vsix` - The packaged extension ready for installation
 - `output/` directory with build artifacts
 
 ## Installing the Extension
@@ -72,7 +72,7 @@ After a successful build, you'll have:
 To install the built extension:
 
 1. **In VS Code**: `Ctrl+Shift+P` → `Extensions: Install from VSIX...`
-2. **Select** the `aoe2-rms-1.0.0.vsix` file
+2. **Select** the `aoe2-rms-1.1.0.vsix` file
 3. **Restart** VS Code if needed
 
 ## Troubleshooting
@@ -100,6 +100,6 @@ docker logs aoe2-rms-extract
 
 Once you have the `.vsix` file:
 
-1. **Open VSX Registry**: Use `ovsx publish aoe2-rms-1.0.0.vsix`
+1. **Open VSX Registry**: Use `ovsx publish aoe2-rms-1.1.0.vsix`
 2. **Cursor Marketplace**: Submit the `.vsix` file through their process
 3. **Manual Distribution**: Share the `.vsix` file directly
