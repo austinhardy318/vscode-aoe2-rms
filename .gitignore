@@ -1,13 +1,58 @@
+# Build outputs
 out/
-node_modules/
-client/server/
-.vscode-test/
 output/
+dist/
+build/
+
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# VS Code
+.vscode/
+.vscode-test/
+client/server/
+
+# Extension packages
 *.vsix
+
+# OS files
 .DS_Store
 Thumbs.db
+desktop.ini
+
 # Log files
 *.log
 *.tmp
-# CI/CD files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Coverage
+coverage/
+.nyc_output/
+
+# CI/CD
 .github/
+.git/
+
+# IDE files
+*.swp
+*.swo
+*~
+
+# TypeScript
+*.tsbuildinfo
+
+# Lock files (optional - uncomment if you want to ignore them)
+# package-lock.json
+# client/package-lock.json
+# server/package-lock.json

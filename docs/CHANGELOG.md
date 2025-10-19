@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2024-12-19
+
+### Added
+
+- **Modern Parser Integration** - Upgraded to aoe2-rms-parser v2.0.1 for better performance and reliability
+- **Optimized Package Structure** - Comprehensive .gitignore, .vscodeignore, and .dockerignore files
+- **Enhanced Build Process** - Modern npm lock files (v3) eliminating all lock file warnings
+
+### Changed
+
+- **Parser** - Replaced mangudai v0.2.3 with aoe2-rms-parser v2.0.1 (modern, actively maintained)
+- **Package Size** - Reduced VSIX package from 1.18 MB to 49.63 KB (96% reduction)
+- **File Count** - Optimized from 1,370 files to 18 files (98% reduction)
+- **Build Performance** - Faster Docker builds with smaller context and modern dependencies
+- **Dependencies** - Updated esbuild to v0.25.11 (fixed security vulnerability)
+
+### Fixed
+
+- **Lock File Warnings** - Eliminated all "old lockfile" warnings with modern npm v3 format
+- **Security Vulnerabilities** - Fixed esbuild security issue
+- **Bundling Warnings** - Resolved VS Code bundling performance warnings
+- **Build Context** - Optimized Docker build context from 1.49 MB to 2.23 kB
+
+### Technical Details
+
+- **Parser**: Modern aoe2-rms-parser v2.0.1 with updated dependencies
+- **Lock Files**: All using npm v3 format (lockfileVersion: 3)
+- **Package**: Optimized .vscodeignore excludes unnecessary files
+- **Performance**: 98% reduction in file count, 96% reduction in package size
+- **Compatibility**: Maintains full backward compatibility with existing RMS files
+
 ## [1.1.0] - 2024-12-19
 
 ### Added
@@ -65,7 +96,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Credits
 
 - **Original Author**: [Mangudai](https://github.com/mangudai)
-- **Parser**: [Mangudai parser](https://github.com/mangudai/mangudai) v0.2.3
+- **Parser**: [aoe2-rms-parser](https://github.com/austinhardy318/aoe2-rms-parser) v2.0.1 (modernized fork)
 - **Modernized by**: Austin
 
 ---

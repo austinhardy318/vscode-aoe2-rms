@@ -6,7 +6,7 @@ import {
   DiagnosticSeverity,
   ProposedFeatures
 } from 'vscode-languageserver'
-import { parse, lint, TextSpanError } from 'mangudai'
+import { parse, lint, TextSpanError } from 'aoe2-rms-parser'
 
 // Create a connection for the server. The connection uses Node's IPC as a transport.
 // Also include all preview / proposed LSP features.

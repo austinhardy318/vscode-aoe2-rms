@@ -29,7 +29,7 @@ Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support for VS Code 
 ## Features
 
 - **Syntax Highlighting** - Full support for RMS syntax including commands, directives, conditionals, and random blocks
-- **Error Detection** - Real-time linting and error reporting using the Mangudai parser
+- **Error Detection** - Real-time linting and error reporting using the modern aoe2-rms-parser
 - **IntelliSense** - Basic language support for RMS files
 - **Multi-root Workspace** - Works with VS Code's multi-root workspace feature
 - **Custom Themes** - Five built-in themes optimized for RMS syntax
@@ -93,7 +93,8 @@ vscode-aoe2-rms/
 
 ## Credits
 
-- **Original Author**: Mangudai (deltaidea)
+- **Original Author**: Mangudai (deltaidea) - Original parser
+- **Parser**: aoe2-rms-parser (modernized fork by Austin)
 - **Modernization**: Austin (austinhardy318)
 - **License**: MIT
 

@@ -5,7 +5,7 @@
 	"author": "Mangudai (original), Austin (modernized)",
 	"license": "MIT",
 	"icon": "icon.png",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/austinhardy318/vscode-aoe2-rms.git"
@@ -43,40 +43,40 @@
 				"configuration": "./language-configuration.json"
 			}
 		],
-        "grammars": [
-          {
-            "language": "aoe2-rms",
-            "scopeName": "source.aoe2-rms",
-            "path": "./aoe2-rms.tmLanguage"
-          }
-        ],
-        "themes": [
-          {
-            "label": "AoE2 RMS Dark",
-            "uiTheme": "vs-dark",
-            "path": "./themes/aoe2-rms-dark.json"
-          },
-          {
-            "label": "AoE2 RMS Light",
-            "uiTheme": "vs",
-            "path": "./themes/aoe2-rms-light.json"
-          },
-          {
-            "label": "AoE2 RMS Vibrant",
-            "uiTheme": "vs-dark",
-            "path": "./themes/aoe2-rms-vibrant.json"
-          },
-          {
-            "label": "AoE2 RMS Monokai",
-            "uiTheme": "vs-dark",
-            "path": "./themes/aoe2-rms-monokai.json"
-          },
-          {
-            "label": "AoE2 RMS Cursor Monokai",
-            "uiTheme": "vs-dark",
-            "path": "./themes/aoe2-rms-cursor-monokai.json"
-          }
-        ]
+		"grammars": [
+			{
+				"language": "aoe2-rms",
+				"scopeName": "source.aoe2-rms",
+				"path": "./aoe2-rms.tmLanguage"
+			}
+		],
+		"themes": [
+			{
+				"label": "AoE2 RMS Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/aoe2-rms-dark.json"
+			},
+			{
+				"label": "AoE2 RMS Light",
+				"uiTheme": "vs",
+				"path": "./themes/aoe2-rms-light.json"
+			},
+			{
+				"label": "AoE2 RMS Vibrant",
+				"uiTheme": "vs-dark",
+				"path": "./themes/aoe2-rms-vibrant.json"
+			},
+			{
+				"label": "AoE2 RMS Monokai",
+				"uiTheme": "vs-dark",
+				"path": "./themes/aoe2-rms-monokai.json"
+			},
+			{
+				"label": "AoE2 RMS Cursor Monokai",
+				"uiTheme": "vs-dark",
+				"path": "./themes/aoe2-rms-cursor-monokai.json"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -101,7 +101,7 @@
 		"@typescript-eslint/parser": "^6.13.1",
 		"@vscode/test-electron": "^2.3.8",
 		"@vscode/vsce": "^2.22.0",
-		"esbuild": "^0.19.8",
+		"esbuild": "^0.25.11",
 		"eslint": "^8.55.0",
 		"prettier": "^3.1.1",
 		"typescript": "^5.3.3"

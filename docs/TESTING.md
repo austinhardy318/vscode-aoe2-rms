@@ -46,7 +46,7 @@ The `test.rms` file contains various RMS syntax elements to test:
 
 - Look for any red squiggly lines indicating errors
 - Check the Problems panel for diagnostics
-- Verify the Mangudai parser is working
+- Verify the aoe2-rms-parser is working
 
 ### 5. Test Language Features
 

@@ -9,7 +9,7 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 out/**
-node_modules/**
+**/node_modules/**
 *.vsix
 output/**
 docs/**
@@ -19,3 +19,5 @@ themes/theme-switcher.js
 Dockerfile
 .dockerignore
 .github/**
+**/package-lock.json
+**/tsconfig.tsbuildinfo
