@@ -49,11 +49,11 @@ If you prefer to run the commands manually:
 
 The Docker build process:
 
-1. ✅ Installs Node.js 20 LTS
-2. ✅ Installs all npm dependencies
-3. ✅ Compiles TypeScript code
-4. ✅ Packages the extension as `.vsix` file
-5. ✅ Extracts the built extension to your local machine
+1. Installs Node.js 20 LTS
+2. Installs all npm dependencies
+3. Compiles TypeScript code
+4. Packages the extension as `.vsix` file
+5. Extracts the built extension to your local machine
 
 ## Output
 

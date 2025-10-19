@@ -8,12 +8,12 @@
 
 This is a modernized fork of the original [AoE2 Random Map Scripting extension](https://github.com/mangudai/vscode) by Mangudai. This version includes:
 
-- ✅ **Modern VS Code API support** (v1.85.0+)
-- ✅ **Updated TypeScript** (v5.3+)
-- ✅ **Modern Language Server Protocol** (v9.x)
-- ✅ **Enhanced error handling** and diagnostics
-- ✅ **Code quality tools** (ESLint, Prettier)
-- ✅ **Improved build system**
+- **Modern VS Code API support** (v1.85.0+)
+- **Updated TypeScript** (v5.3+)
+- **Modern Language Server Protocol** (v8.x)
+- **Enhanced error handling** and diagnostics
+- **Code quality tools** (ESLint, Prettier)
+- **Improved build system**
 
 ## Install
 
@@ -41,11 +41,11 @@ This is a modernized fork of the original [AoE2 Random Map Scripting extension](
 
 ### 1.0.0 (Modernized Fork)
 
-- 🚀 **Major modernization** - Updated for modern VS Code (v1.85.0+)
-- 🔧 **Updated dependencies** - TypeScript 5.3+, modern LSP libraries
-- 🛠️ **Enhanced tooling** - ESLint, Prettier, improved build system
-- 🐛 **Better error handling** - Graceful parsing error handling
-- 📦 **Publishing ready** - Available on Open VSX Registry and Cursor Marketplace
+- **Major modernization** - Updated for modern VS Code (v1.85.0+)
+- **Updated dependencies** - TypeScript 5.3+, modern LSP libraries
+- **Enhanced tooling** - ESLint, Prettier, improved build system
+- **Better error handling** - Graceful parsing error handling
+- **Publishing ready** - Available on Open VSX Registry and Cursor Marketplace
 
 ### Original Extension History
 
