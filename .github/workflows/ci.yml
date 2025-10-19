@@ -123,14 +123,24 @@ jobs:
 
       - name: Test Docker Build
         run: |
+          # Create output directory
+          mkdir -p output
+          
           # Test that Docker build produces a valid VSIX
-          docker run --rm -v $(pwd)/output:/output aoe2-rms-builder sh -c "cp /app/*.vsix /output/"
-
-          if [ -f "output/aoe2-rms-*.vsix" ]; then
+          docker run --rm -v $(pwd)/output:/output aoe2-rms-builder sh -c "find /app -name '*.vsix' -exec cp {} /output/ \;"
+          
+          # Check if any VSIX files were created
+          if ls output/*.vsix 1> /dev/null 2>&1; then
             echo "✅ Docker build test passed"
             ls -la output/
+            echo "VSIX files found:"
+            ls -la output/*.vsix
           else
-            echo "❌ Docker build test failed"
+            echo "❌ Docker build test failed - no VSIX files found"
+            echo "Contents of output directory:"
+            ls -la output/
+            echo "Contents of Docker container:"
+            docker run --rm aoe2-rms-builder find /app -name "*.vsix" -ls
             exit 1
           fi
 

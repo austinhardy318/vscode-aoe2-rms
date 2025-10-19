@@ -25,7 +25,7 @@ RUN npm run package
 RUN mkdir -p /output
 
 # Copy the built extension to output directory
-RUN cp *.vsix /output/ 2>/dev/null || echo "No .vsix files found"
+RUN find . -name "*.vsix" -exec cp {} /output/ \;
 
 # Set default command to show the built files
 CMD ["ls", "-la", "/output"]
