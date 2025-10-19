@@ -18,14 +18,17 @@ This is a modernized fork of the original [AoE2 Random Map Scripting extension](
 ## Install
 
 ### Open VSX Registry
+
 1. Install the [Open VSX extension](https://open-vsx.org/extension/austinhardy318/aoe2-rms)
 2. Or search for `aoe2-rms` in VS Code extensions
 
 ### Cursor Marketplace
+
 1. Search for `AoE2 RMS Syntax` in Cursor's extension marketplace
 2. Install the extension
 
 ### Manual Installation
+
 1. Download the `.vsix` file from [Releases](https://github.com/austinhardy318/vscode-aoe2-rms/releases)
 2. In VS Code: `Ctrl/Cmd + Shift + P` → `Extensions: Install from VSIX...`
 3. Select the downloaded `.vsix` file
@@ -65,17 +68,20 @@ This fork is based on the original extension by Mangudai. See the [original repo
 ### Setup
 
 1. Clone this repository:
+
    ```bash
    git clone https://github.com/austinhardy318/vscode-aoe2-rms.git
    cd vscode-aoe2-rms
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Compile the extension:
+
    ```bash
    npm run compile
    ```
@@ -89,6 +95,7 @@ This fork is based on the original extension by Mangudai. See the [original repo
 ### Building
 
 #### Docker Build (Recommended)
+
 ```bash
 # Build using Docker (requires Docker Desktop)
 npm run build:docker
@@ -99,6 +106,7 @@ build-docker.bat  # Windows
 ```
 
 #### Local Build
+
 ```bash
 # Install dependencies
 npm install
@@ -121,6 +129,7 @@ See [BUILD.md](BUILD.md) for detailed build instructions.
 ### Built Extension
 
 The extension is pre-built and ready for installation:
+
 - **Package**: `aoe2-rms-1.0.0.vsix` (1.16 MB)
 - **Publisher**: `austinhardy318`
 - **Extension ID**: `aoe2-rms`

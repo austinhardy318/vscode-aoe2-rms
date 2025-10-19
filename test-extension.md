@@ -17,16 +17,19 @@ The `test.rms` file contains various RMS syntax elements to test:
 ## Testing Steps:
 
 ### 1. Install Extension
+
 - Open VS Code
 - Press `Ctrl+Shift+P`
 - Type: `Extensions: Install from VSIX...`
 - Select: `aoe2-rms-1.0.0.vsix`
 
 ### 2. Open Test File
+
 - Open `test.rms` in VS Code
 - Verify file is recognized as RMS language
 
 ### 3. Check Syntax Highlighting
+
 - Section headers should be highlighted
 - Commands should be highlighted
 - Attributes should be highlighted
@@ -34,11 +37,13 @@ The `test.rms` file contains various RMS syntax elements to test:
 - Comments should be highlighted
 
 ### 4. Check Error Detection
+
 - Look for any red squiggly lines indicating errors
 - Check the Problems panel for diagnostics
 - Verify the Mangudai parser is working
 
 ### 5. Test Language Features
+
 - Hover over elements for tooltips
 - Check if IntelliSense works
 - Verify bracket matching works
@@ -54,6 +59,7 @@ The `test.rms` file contains various RMS syntax elements to test:
 ## Troubleshooting:
 
 If issues occur:
+
 1. Check VS Code Developer Console (`Help > Toggle Developer Tools`)
 2. Look for error messages
 3. Verify extension is properly installed
