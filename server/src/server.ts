@@ -22,16 +22,30 @@ connection.onInitialize(() => ({
 
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
-documents.onDidChangeContent(change => {
+documents.onDidChangeContent((change: { document: TextDocument }) => {
   validateTextDocument(change.document)
 })
 
 async function validateTextDocument (textDocument: TextDocument): Promise<void> {
-  const { ast, errors } = parse(textDocument.getText())
-  const diagnostics = errors.map(errorToDiagnostic)
-  if (diagnostics.length === 0) diagnostics.push(...lint(ast).map(errorToDiagnostic))
+  try {
+    const { ast, errors } = parse(textDocument.getText())
+    const diagnostics = errors.map(errorToDiagnostic)
+    if (diagnostics.length === 0) diagnostics.push(...lint(ast).map(errorToDiagnostic))
 
-  connection.sendDiagnostics({ uri: textDocument.uri, diagnostics })
+    connection.sendDiagnostics({ uri: textDocument.uri, diagnostics })
+  } catch (error) {
+    // Handle parsing errors gracefully
+    const diagnostics: Diagnostic[] = [{
+      severity: DiagnosticSeverity.Error,
+      range: {
+        start: { line: 0, character: 0 },
+        end: { line: 0, character: 0 }
+      },
+      message: `Parse error: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      source: 'rms'
+    }]
+    connection.sendDiagnostics({ uri: textDocument.uri, diagnostics })
+  }
 }
 
 function errorToDiagnostic (error: TextSpanError): Diagnostic {

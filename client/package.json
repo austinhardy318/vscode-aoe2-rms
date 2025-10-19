@@ -1,27 +1,26 @@
 {
 	"name": "aoe2-rms-client",
-	"description": "Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support",
-	"author": "Mangudai",
+	"description": "Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support - Modernized fork",
+	"author": "Mangudai (original), Austin (modernized)",
 	"license": "MIT",
-	"version": "0.3.2",
-	"publisher": "deltaidea",
+	"version": "1.0.0",
+	"publisher": "austinhardy318",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mangudai/vscode.git"
+		"url": "https://github.com/austinhardy318/vscode-aoe2-rms.git"
 	},
-	"homepage": "https://github.com/mangudai/vscode",
+	"homepage": "https://github.com/austinhardy318/vscode-aoe2-rms",
 	"bugs": {
-		"url": "https://github.com/mangudai/vscode/issues"
+		"url": "https://github.com/austinhardy318/vscode-aoe2-rms/issues"
 	},
 	"engines": {
-		"vscode": "^1.23.0"
+		"vscode": "^1.85.0"
 	},
-	"scripts": {
-		"update-vscode": "node ./node_modules/vscode/bin/install",
-		"postinstall": "node ./node_modules/vscode/bin/install"
-	},
+	"scripts": {},
 	"dependencies": {
-		"vscode": "1.1.18",
 		"vscode-languageclient": "4.2.1"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.85.0"
 	}
 }

@@ -1,19 +1,19 @@
 {
 	"name": "aoe2-rms-server",
-	"description": "Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support",
-	"version": "0.3.2",
-	"author": "Mangudai",
+	"description": "Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support - Modernized fork",
+	"version": "1.0.0",
+	"author": "Mangudai (original), Austin (modernized)",
 	"license": "MIT",
 	"engines": {
-		"node": "*"
+		"node": ">=18.0.0"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mangudai/vscode.git"
+		"url": "https://github.com/austinhardy318/vscode-aoe2-rms.git"
 	},
-	"homepage": "https://github.com/mangudai/vscode",
+	"homepage": "https://github.com/austinhardy318/vscode-aoe2-rms",
 	"bugs": {
-		"url": "https://github.com/mangudai/vscode/issues"
+		"url": "https://github.com/austinhardy318/vscode-aoe2-rms/issues"
 	},
 	"dependencies": {
 		"mangudai": "0.2.3",

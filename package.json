@@ -1,20 +1,20 @@
 {
 	"name": "aoe2-rms",
-	"displayName": "AoE2 Random Map Scripting",
-	"description": "Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support",
-	"author": "Mangudai",
+	"displayName": "AoE2 RMS Syntax",
+	"description": "Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support - Modernized fork",
+	"author": "Mangudai (original), Austin (modernized)",
 	"license": "MIT",
 	"icon": "icon.png",
-	"version": "0.3.2",
+	"version": "1.0.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mangudai/vscode.git"
+		"url": "https://github.com/austinhardy318/vscode-aoe2-rms.git"
 	},
-	"homepage": "https://github.com/mangudai/vscode",
+	"homepage": "https://github.com/austinhardy318/vscode-aoe2-rms",
 	"bugs": {
-		"url": "https://github.com/mangudai/vscode/issues"
+		"url": "https://github.com/austinhardy318/vscode-aoe2-rms/issues"
 	},
-	"publisher": "deltaidea",
+	"publisher": "austinhardy318",
 	"categories": [
 		"Programming Languages"
 	],
@@ -26,11 +26,8 @@
 		"multi-root ready"
 	],
 	"engines": {
-		"vscode": "^1.23.0"
+		"vscode": "^1.85.0"
 	},
-	"activationEvents": [
-		"onLanguage:aoe2-rms"
-	],
 	"main": "./client/out/extension",
 	"contributes": {
 		"languages": [
@@ -55,18 +52,31 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
-		"compile:client": "tsc -p ./client/tsconfig.json",
-		"compile:server": "tsc -p ./server/tsconfig.json",
-		"watch:client": "tsc -w -p ./client/tsconfig.json",
-		"watch:server": "tsc -w -p ./server/tsconfig.json",
+		"vscode:prepublish": "npm run compile",
+		"compile:client": "tsc -b ./client/tsconfig.json",
+		"compile:server": "tsc -b ./server/tsconfig.json",
+		"watch:client": "tsc -b ./client/tsconfig.json --watch",
+		"watch:server": "tsc -b ./server/tsconfig.json --watch",
 		"compile": "npm run compile:client && npm run compile:server",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"test": "sh ./scripts/e2e.sh"
+		"lint": "eslint . --ext .ts",
+		"lint:fix": "eslint . --ext .ts --fix",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"package": "vsce package",
+		"build:docker": "docker build -t aoe2-rms-builder . && docker run --name aoe2-rms-extract aoe2-rms-builder && docker cp aoe2-rms-extract:/output/. ./output/ && docker rm aoe2-rms-extract",
+		"test": "npm run compile && node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/mocha": "5.2.4",
-		"@types/node": "8.10.18",
-		"typescript": "2.9.2"
+		"@types/mocha": "^10.0.6",
+		"@types/node": "^20.10.0",
+		"@typescript-eslint/eslint-plugin": "^6.13.1",
+		"@typescript-eslint/parser": "^6.13.1",
+		"@vscode/test-electron": "^2.3.8",
+		"@vscode/vsce": "^2.22.0",
+		"esbuild": "^0.19.8",
+		"eslint": "^8.55.0",
+		"prettier": "^3.1.1",
+		"typescript": "^5.3.3"
 	}
 }

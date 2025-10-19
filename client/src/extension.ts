@@ -14,13 +14,13 @@ export function activate (context: ExtensionContext) {
   }
 
   let clientOptions: LanguageClientOptions = {
-    documentSelector: ['aoe2-rms']
+    documentSelector: [{ scheme: 'file', language: 'aoe2-rms' }]
   }
 
   client = new LanguageClient('aoe2-rms', 'AoE2 RMS Language Server', serverOptions, clientOptions)
   client.start()
 }
 
-export async function deactivate () {
+export async function deactivate (): Promise<void> {
   return client ? client.stop() : undefined
 }

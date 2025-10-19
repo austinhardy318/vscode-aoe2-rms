@@ -1,0 +1,32 @@
+<LAND_GENERATION>
+create_object TOWN_CENTER {
+  number_of_objects 1
+  set_place_for_every_player
+  min_distance_to_players 20
+  max_distance_to_players 30
+}
+
+create_object VILLAGER {
+  number_of_objects 5
+  set_place_for_every_player
+  min_distance_to_players 5
+  max_distance_to_players 15
+}
+</LAND_GENERATION>
+
+<OBJECTS_GENERATION>
+if MY_VARIABLE
+  create_object TREE {
+    number_of_objects 10
+    set_gaia_object_only
+  }
+endif
+
+start_random
+  percent_chance 50
+  create_object GOLD_MINE {
+    number_of_objects 2
+    set_gaia_object_only
+  }
+end_random
+</OBJECTS_GENERATION>
