@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2024-12-19
+
+### Added
+
+- **AoE2 RMS Cursor Monokai Theme** - Cursor's modern dark UI with Monokai syntax highlighting
+- **Release preparation script** - Automated build and release preparation
+- **Enhanced theme documentation** - Updated all documentation with new theme
+
+### Changed
+
+- **Version** - Bumped to 1.1.0 for theme addition
+- **Theme count** - Now includes 5 custom themes total
+- **Documentation** - Updated README, themes README, and testing guides
+
+### Technical Details
+
+- **New Theme**: Cursor Dark UI colors with Monokai syntax highlighting
+- **Theme File**: `themes/aoe2-rms-cursor-monokai.json`
+- **Package Size**: Slightly increased due to additional theme
+- **Compatibility**: Maintains full backward compatibility
+
 ## [1.0.0] - 2024-12-19
 
 ### Added

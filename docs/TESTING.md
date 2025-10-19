@@ -8,7 +8,7 @@ This guide covers testing both the core extension functionality and the custom t
 
 The `test.rms` file contains various RMS syntax elements to test:
 
-### Syntax Elements to Verify:
+### Syntax Elements to Verify
 
 1. **Section Headers** - `<LAND_GENERATION>` and `<OBJECTS_GENERATION>`
 2. **Commands** - `create_object` statements
@@ -65,6 +65,7 @@ The `test.rms` file contains various RMS syntax elements to test:
    - **AoE2 RMS Light** - High contrast, good for daytime coding
    - **AoE2 RMS Vibrant** - Bright, colorful palette for creative coding sessions
    - **AoE2 RMS Monokai** - Classic Monokai-inspired theme for RMS syntax
+   - **AoE2 RMS Cursor Monokai** - Cursor's modern dark UI with Monokai syntax highlighting
 
 ### 7. Verify Theme Elements
 
@@ -85,6 +86,7 @@ If you have Node.js installed:
 ```bash
 node themes/theme-switcher.js "AoE2 RMS Dark" test.rms
 node themes/theme-switcher.js "AoE2 RMS Vibrant" test.rms
+node themes/theme-switcher.js "AoE2 RMS Cursor Monokai" test.rms
 ```
 
 ## Expected Results
@@ -99,7 +101,7 @@ node themes/theme-switcher.js "AoE2 RMS Vibrant" test.rms
 
 ### Custom Themes
 
-- All four themes should appear in the theme list
+- All five themes should appear in the theme list
 - Each theme should highlight RMS syntax differently
 - Colors should be consistent within each theme
 - No errors should appear in the VS Code Developer Console

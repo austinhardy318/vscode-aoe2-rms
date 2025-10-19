@@ -1,0 +1,313 @@
+/* MOUNTAIN PASS - A Strategic Elevated Map */
+/* Created using the Definitive Random Map Scripting Guide */
+/* Features: Elevated terrain, cliffs, strategic resources, nomad start */
+
+/* PLAYER_SETUP: Configure player placement and global parameters */
+<PLAYER_SETUP>
+grouped_by_team                    /* Team members spawn close together */
+ai_info_map_type CUSTOM 1 0 0     /* MapType=CUSTOM, IsNomad=1, IsMichi=0, ShowType=0 */
+nomad_resources                    /* Add TC cost to starting resources for nomad gameplay */
+force_nomad_treaty                 /* Prevent early villager fighting */
+override_map_size 200              /* Large map for strategic gameplay */
+
+/* LAND_GENERATION: Create the base terrain and player areas */
+<LAND_GENERATION>
+base_terrain GRASS                 /* Base terrain covering entire map */
+base_layer DIRT3                   /* Dirt layer for visual variety */
+
+/* Create elevated player lands on mountain peaks */
+create_player_lands
+{
+  terrain_type GRASS               /* Terrain for player starting areas */
+  land_percent 8                   /* Small elevated areas for each player */
+  left_border 10                   /* Keep players away from map edges */
+  right_border 10
+  top_border 10
+  bottom_border 10
+  circle_radius 40 5               /* Players in 40% radius circle with 5% variance */
+  border_fuzziness 80              /* Sharp borders for defined mountain peaks */
+  set_zone_by_team                 /* Team members can share mountain areas */
+  base_size 8                      /* 8-tile mountain peak origins */
+  other_zone_avoidance_distance 15 /* 15-tile gap between different teams */
+  set_circular_base                /* Circular mountain peaks */
+  base_elevation 3                 /* Start elevated for mountain feel */
+}
+
+/* Create valley areas between mountains */
+create_land
+{
+  terrain_type DIRT3               /* Dirt valleys between mountains */
+  land_percent 15                  /* 15% of map for valleys */
+  left_border 5                    /* Valleys can extend closer to edges */
+  right_border 5
+  top_border 5
+  bottom_border 5
+  generate_mode 1                  /* Allow valleys in corners */
+  base_size 12                     /* Larger valley areas */
+  other_zone_avoidance_distance 8  /* Smaller gap for valleys */
+}
+
+/* Create forest areas for resources */
+create_land
+{
+  terrain_type FOREST              /* Forest areas for wood and hunting */
+  land_percent 20                  /* 20% of map for forests */
+  left_border 8
+  right_border 8
+  top_border 8
+  bottom_border 8
+  generate_mode 1                  /* Forests can be anywhere */
+  base_size 15                     /* Large forest patches */
+  other_zone_avoidance_distance 5  /* Smaller gap for forests */
+}
+
+/* ELEVATION_GENERATION: Create strategic hills and mountains */
+<ELEVATION_GENERATION>
+enable_balanced_elevation          /* Reduce south bias in hill placement */
+
+/* Create high mountain peaks */
+create_elevation 12
+{
+  base_terrain GRASS               /* Elevate grass terrain */
+  base_layer DIRT3                 /* Include dirt layer */
+  number_of_tiles 800              /* Large mountain areas */
+  number_of_clumps 4               /* 4 major mountain ranges */
+  set_scale_by_groups              /* Scale by number of clumps */
+  spacing 15                       /* 15-tile spacing between mountains */
+}
+
+/* Create medium hills */
+create_elevation 8
+{
+  base_terrain GRASS
+  base_layer DIRT3
+  number_of_tiles 600              /* Medium hill areas */
+  number_of_clumps 6               /* 6 hill ranges */
+  set_scale_by_groups
+  spacing 10                       /* 10-tile spacing between hills */
+}
+
+/* Create small hills */
+create_elevation 5
+{
+  base_terrain GRASS
+  base_layer DIRT3
+  number_of_tiles 400              /* Small hill areas */
+  number_of_clumps 8               /* 8 small hill groups */
+  set_scale_by_groups
+  spacing 8                        /* 8-tile spacing between small hills */
+}
+
+/* CLIFF_GENERATION: Create strategic cliff barriers */
+<CLIFF_GENERATION>
+cliff_type CT_GRANITE              /* Gray granite cliffs for mountain theme */
+min_number_of_cliffs 8             /* 8-12 cliffs for strategic barriers */
+max_number_of_cliffs 12
+min_length_of_cliff 4              /* 15-21 tile cliff segments */
+max_length_of_cliff 7
+cliff_curliness 25                 /* Moderately straight cliffs */
+min_distance_cliffs 3              /* 9-tile spacing between cliffs */
+min_terrain_distance 2             /* 6-tile spacing from water */
+
+/* TERRAIN_GENERATION: Add visual variety and water features */
+<TERRAIN_GENERATION>
+color_correction CC_MOUNTAIN       /* Mountain-themed lighting */
+
+/* Create small lakes in valleys */
+create_terrain WATER
+{
+  base_terrain DIRT3               /* Place water on dirt valleys */
+  land_percent 3                   /* 3% of map for water features */
+  number_of_clumps 4               /* 4 small lakes */
+  set_scale_by_groups
+  spacing 20                       /* 20-tile spacing between lakes */
+  beach_terrain BEACH              /* Add beaches around water */
+}
+
+/* Add snow on high peaks */
+create_terrain SNOW
+{
+  base_terrain GRASS               /* Place snow on grass */
+  base_layer DIRT3                 /* Include dirt layer */
+  land_percent 2                   /* 2% of map for snow */
+  min_elevation 8                  /* Only on high elevations */
+  max_elevation 16                 /* Up to maximum height */
+  number_of_clumps 6               /* 6 snow patches */
+  set_scale_by_groups
+  spacing 15                       /* 15-tile spacing between snow areas */
+}
+
+/* Add desert patches for variety */
+create_terrain DESERT
+{
+  base_terrain GRASS               /* Place desert on grass */
+  land_percent 5                   /* 5% of map for desert */
+  number_of_clumps 5               /* 5 desert patches */
+  set_scale_by_groups
+  spacing 25                       /* 25-tile spacing between deserts */
+}
+
+/* OBJECTS_GENERATION: Place units, buildings, and resources */
+<OBJECTS_GENERATION>
+
+/* Starting villagers - nomad style */
+create_object VILLAGER
+{
+  number_of_objects 4              /* 4 villagers per player */
+  set_place_for_every_player       /* Place for each player land */
+  min_distance_to_players 0        /* At mountain peak origin */
+  max_distance_to_players 2        /* Within 2 tiles of peak */
+  set_circular_placement           /* Use circular distance */
+}
+
+/* Starting scout for exploration */
+create_object SCOUT_CAVALRY
+{
+  number_of_objects 1              /* 1 scout per player */
+  set_place_for_every_player
+  min_distance_to_players 1        /* 1 tile from peak */
+  max_distance_to_players 3        /* Within 3 tiles of peak */
+  set_circular_placement
+}
+
+/* Starting sheep for food */
+create_object SHEEP
+{
+  number_of_objects 4              /* 4 sheep per player */
+  set_place_for_every_player
+  set_gaia_object_only             /* Required for gaia objects per-player */
+  min_distance_to_players 2        /* 2 tiles from peak */
+  max_distance_to_players 6        /* Within 6 tiles of peak */
+  set_circular_placement
+}
+
+/* Berries in valleys */
+create_object BERRY_BUSH
+{
+  number_of_objects 2              /* 2 berry patches per player */
+  set_place_for_every_player
+  set_gaia_object_only
+  min_distance_to_players 8        /* 8 tiles from peak (in valleys) */
+  max_distance_to_players 15       /* Within 15 tiles of peak */
+  set_circular_placement
+  avoid_cliff_zone 3               /* Stay 3 tiles from cliffs */
+}
+
+/* Deer for hunting */
+create_object DEER
+{
+  number_of_objects 3              /* 3 deer per player */
+  set_place_for_every_player
+  set_gaia_object_only
+  min_distance_to_players 10       /* 10 tiles from peak */
+  max_distance_to_players 20       /* Within 20 tiles of peak */
+  set_circular_placement
+  avoid_cliff_zone 2               /* Stay 2 tiles from cliffs */
+}
+
+/* Gold mines on mountain peaks */
+create_object GOLD_MINE
+{
+  number_of_objects 2              /* 2 gold mines per player */
+  set_place_for_every_player
+  set_gaia_object_only
+  min_distance_to_players 3        /* 3 tiles from peak */
+  max_distance_to_players 8        /* Within 8 tiles of peak */
+  set_circular_placement
+  min_elevation 5                  /* Only on elevated terrain */
+}
+
+/* Stone mines in valleys */
+create_object STONE_MINE
+{
+  number_of_objects 1              /* 1 stone mine per player */
+  set_place_for_every_player
+  set_gaia_object_only
+  min_distance_to_players 12       /* 12 tiles from peak */
+  max_distance_to_players 25       /* Within 25 tiles of peak */
+  set_circular_placement
+  avoid_cliff_zone 2               /* Stay 2 tiles from cliffs */
+}
+
+/* Wood scattered around forests */
+create_object FOREST_TREE
+{
+  number_of_objects 100            /* 100 trees per player */
+  set_place_for_every_player
+  set_gaia_object_only
+  min_distance_to_players 15       /* 15 tiles from peak */
+  max_distance_to_players 35       /* Within 35 tiles of peak */
+  set_circular_placement
+  avoid_cliff_zone 1               /* Stay 1 tile from cliffs */
+}
+
+/* Relics on highest peaks - strategic late-game control */
+create_object RELIC
+{
+  number_of_objects 3              /* 3 relics total */
+  set_gaia_object_only
+  min_distance_to_players 20       /* 20 tiles from any player */
+  max_distance_to_players 50       /* Within 50 tiles of players */
+  set_circular_placement
+  min_elevation 8                  /* Only on highest peaks */
+  avoid_cliff_zone 2               /* Stay 2 tiles from cliffs */
+  min_distance_to_map_edge 10      /* Stay 10 tiles from map edge */
+}
+
+/* Neutral gold mines in valleys */
+create_object GOLD_MINE
+{
+  number_of_objects 4              /* 4 neutral gold mines */
+  set_gaia_object_only
+  min_distance_to_players 25       /* 25 tiles from any player */
+  max_distance_to_players 60       /* Within 60 tiles of players */
+  set_circular_placement
+  avoid_cliff_zone 3               /* Stay 3 tiles from cliffs */
+  min_distance_to_map_edge 8       /* Stay 8 tiles from map edge */
+}
+
+/* Neutral stone mines */
+create_object STONE_MINE
+{
+  number_of_objects 3              /* 3 neutral stone mines */
+  set_gaia_object_only
+  min_distance_to_players 30       /* 30 tiles from any player */
+  max_distance_to_players 65       /* Within 65 tiles of players */
+  set_circular_placement
+  avoid_cliff_zone 3               /* Stay 3 tiles from cliffs */
+  min_distance_to_map_edge 8       /* Stay 8 tiles from map edge */
+}
+
+/* Boars in forest areas */
+create_object BOAR
+{
+  number_of_objects 2              /* 2 boars per player */
+  set_place_for_every_player
+  set_gaia_object_only
+  min_distance_to_players 15       /* 15 tiles from peak */
+  max_distance_to_players 30       /* Within 30 tiles of peak */
+  set_circular_placement
+  avoid_cliff_zone 2               /* Stay 2 tiles from cliffs */
+}
+
+/* Wolves for danger */
+create_object WOLF
+{
+  number_of_objects 6              /* 6 wolves total */
+  set_gaia_object_only
+  min_distance_to_players 20       /* 20 tiles from any player */
+  max_distance_to_players 50       /* Within 50 tiles of players */
+  set_circular_placement
+  avoid_cliff_zone 1               /* Stay 1 tile from cliffs */
+  min_distance_to_map_edge 5       /* Stay 5 tiles from map edge */
+}
+
+/* Regicide support */
+if REGICIDE
+create_object KING
+{
+  set_place_for_every_player       /* Place King for each player */
+  find_closest                     /* Place at closest valid location */
+}
+endif
+

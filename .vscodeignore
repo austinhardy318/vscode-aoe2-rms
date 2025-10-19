@@ -12,11 +12,10 @@ out/**
 node_modules/**
 *.vsix
 output/**
+docs/**
+scripts/**
+samples/**
 themes/theme-switcher.js
-validate-extension.js
-BUILD.md
-CHANGELOG.md
-TESTING.md
 Dockerfile
 .dockerignore
-build-docker.*
+.github/**

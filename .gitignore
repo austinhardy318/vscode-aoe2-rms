@@ -6,3 +6,8 @@ output/
 *.vsix
 .DS_Store
 Thumbs.db
+# Log files
+*.log
+*.tmp
+# CI/CD files
+.github/

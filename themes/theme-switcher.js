@@ -15,7 +15,8 @@ const themes = [
   'AoE2 RMS Dark',
   'AoE2 RMS Light', 
   'AoE2 RMS Vibrant',
-  'AoE2 RMS Monokai'
+  'AoE2 RMS Monokai',
+  'AoE2 RMS Cursor Monokai'
 ];
 
 function showUsage() {

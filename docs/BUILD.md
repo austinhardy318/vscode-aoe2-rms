@@ -11,16 +11,18 @@ This document explains how to build the AoE2 RMS extension using Docker for a co
 
 1. **Start Docker Desktop** - Make sure Docker Desktop is running
 2. **Run the build script**:
+
    ```cmd
-   build-docker.bat
+   scripts\build-docker.bat
    ```
 
 ## Quick Build (Linux/macOS)
 
 1. **Start Docker** - Make sure Docker daemon is running
 2. **Run the build script**:
+
    ```bash
-   ./build-docker.sh
+   ./scripts/build-docker.sh
    ```
 
 ## Manual Build Steps
@@ -28,11 +30,13 @@ This document explains how to build the AoE2 RMS extension using Docker for a co
 If you prefer to run the commands manually:
 
 1. **Build the Docker image**:
+
    ```bash
    docker build -t aoe2-rms-builder .
    ```
 
 2. **Run the build and extract the extension**:
+
    ```bash
    docker run --name aoe2-rms-extract aoe2-rms-builder
    docker cp aoe2-rms-extract:/output/. ./output/
@@ -40,6 +44,7 @@ If you prefer to run the commands manually:
    ```
 
 3. **Move the .vsix file to the root directory**:
+
    ```bash
    move output\*.vsix .  # Windows
    mv output/*.vsix .    # Linux/macOS
@@ -58,6 +63,7 @@ The Docker build process:
 ## Output
 
 After a successful build, you'll have:
+
 - `aoe2-rms-1.0.0.vsix` - The packaged extension ready for installation
 - `output/` directory with build artifacts
 
@@ -72,18 +78,22 @@ To install the built extension:
 ## Troubleshooting
 
 ### Docker not running
+
 ```
 ERROR: error during connect: Head "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/_ping"
 ```
 **Solution**: Start Docker Desktop and wait for it to fully initialize.
 
 ### Build fails
+
 **Solution**: Check the Docker logs:
+
 ```bash
 docker logs aoe2-rms-extract
 ```
 
 ### No .vsix file generated
+
 **Solution**: Check if the build completed successfully and look in the `output/` directory.
 
 ## Publishing
