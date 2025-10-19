@@ -82,6 +82,7 @@ To install the built extension:
 ```
 ERROR: error during connect: Head "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/_ping"
 ```
+
 **Solution**: Start Docker Desktop and wait for it to fully initialize.
 
 ### Build fails

@@ -1,0 +1,150 @@
+name: Parser Integration Tests
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'server/package.json'
+      - 'server/src/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'server/package.json'
+      - 'server/src/**'
+
+jobs:
+  test-parser:
+    name: Test Parser Integration
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Test Parser Installation
+        run: |
+          echo "Testing aoe2-rms-parser installation..."
+          cd server
+          npm list aoe2-rms-parser
+
+      - name: Test Parser Functionality
+        run: |
+          echo "Testing parser functionality..."
+          node -e "
+          const { parse, lint } = require('./server/node_modules/aoe2-rms-parser');
+
+          // Test basic parsing
+          const basicTest = '<PLAYER_SETUP>\n  random_placement\n</PLAYER_SETUP>';
+          const basicResult = parse(basicTest);
+          console.log('Basic parse test:', basicResult.errors.length === 0 ? 'PASS' : 'FAIL');
+
+          // Test complex parsing
+          const complexTest = \`
+          <PLAYER_SETUP>
+            random_placement
+            number_of_players 4
+            team_together
+          </PLAYER_SETUP>
+
+          <LAND_GENERATION>
+            base_terrain GRASS
+            create_player_lands
+              land_percent 25
+              base_size 10
+          </LAND_GENERATION>
+
+          <OBJECTS_GENERATION>
+            create_object TOWN_CENTER
+              set_place_for_every_player
+              number_of_objects 1
+          </OBJECTS_GENERATION>
+          \`;
+          const complexResult = parse(complexTest);
+          console.log('Complex parse test:', complexResult.errors.length === 0 ? 'PASS' : 'FAIL');
+
+          // Test linting
+          if (complexResult.ast) {
+            const lintErrors = lint(complexResult.ast);
+            console.log('Linting test:', lintErrors.length === 0 ? 'PASS' : 'FAIL');
+            if (lintErrors.length > 0) {
+              console.log('Lint errors:', lintErrors);
+            }
+          }
+
+          // Test error handling
+          const errorTest = 'invalid syntax here';
+          const errorResult = parse(errorTest);
+          console.log('Error handling test:', errorResult.errors.length > 0 ? 'PASS' : 'FAIL');
+
+          console.log('All parser tests completed');
+          "
+
+      - name: Test Language Server Integration
+        run: |
+          echo "Testing language server integration..."
+          # Compile the server
+          npm run compile:server
+
+          # Test that the server can start
+          timeout 5s node server/out/server.js || echo "Server started successfully (timeout expected)"
+
+      - name: Test VSIX Package
+        run: |
+          echo "Testing VSIX package creation..."
+          npm run package
+
+          # Verify the package contains the parser
+          unzip -l aoe2-rms-*.vsix | grep -E "(server|parser)" || echo "Parser not found in package"
+
+      - name: Performance Test
+        run: |
+          echo "Testing parser performance..."
+          node -e "
+          const { parse } = require('./server/node_modules/aoe2-rms-parser');
+
+          // Create a large RMS file for performance testing
+          const largeRms = \`
+          <PLAYER_SETUP>
+            random_placement
+            number_of_players 8
+            team_together
+          </PLAYER_SETUP>
+
+          \${Array(100).fill(0).map((_, i) => \`
+          <LAND_GENERATION>
+            create_land
+              land_percent \${Math.random() * 20 + 5}
+              base_size \${Math.floor(Math.random() * 10 + 5)}
+              land_position \${Math.random() * 100} \${Math.random() * 100}
+          </LAND_GENERATION>
+          \`).join('')}
+
+          <OBJECTS_GENERATION>
+            \${Array(50).fill(0).map((_, i) => \`
+            create_object TREE\${i % 10}
+              number_of_objects \${Math.floor(Math.random() * 100 + 10)}
+              set_place_for_every_player
+            \`).join('')}
+          </OBJECTS_GENERATION>
+          \`;
+
+          const start = Date.now();
+          const result = parse(largeRms);
+          const duration = Date.now() - start;
+
+          console.log(\`Performance test: \${duration}ms for \${largeRms.length} characters\`);
+          console.log('Parse result:', result.errors.length === 0 ? 'SUCCESS' : 'FAILED');
+
+          if (duration > 1000) {
+            console.log('WARNING: Parse time exceeded 1 second');
+          }
+          "

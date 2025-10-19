@@ -40,9 +40,9 @@ yarn-error.log*
 coverage/
 .nyc_output/
 
-# CI/CD
-.github/
-.git/
+# CI/CD (keep workflows, ignore other CI files)
+# .github/ - Keep workflows in git
+# .git/ - Keep git directory
 
 # IDE files
 *.swp

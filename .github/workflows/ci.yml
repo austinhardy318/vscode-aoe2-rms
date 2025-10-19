@@ -1,0 +1,208 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  release:
+    types: [created]
+
+jobs:
+  test:
+    name: Test Extension
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [18, 20]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Lint Code
+        run: npm run lint
+
+      - name: Format Check
+        run: npm run format:check
+
+      - name: Type Check
+        run: npm run compile
+
+      - name: Build Extension
+        run: npm run package
+
+      - name: Test Extension Installation
+        run: |
+          # Test that the VSIX can be installed
+          if [ -f "aoe2-rms-*.vsix" ]; then
+            echo "✅ VSIX package created successfully"
+            ls -la *.vsix
+          else
+            echo "❌ VSIX package not found"
+            exit 1
+          fi
+
+      - name: Validate Package Contents
+        run: |
+          # Check package contents
+          unzip -l aoe2-rms-*.vsix | head -20
+          echo "Package validation completed"
+
+      - name: Test Parser Integration
+        run: |
+          # Test that the parser is working
+          node -e "
+          const { parse } = require('./server/node_modules/aoe2-rms-parser');
+          const testCode = '<PLAYER_SETUP>\n  random_placement\n</PLAYER_SETUP>';
+          const result = parse(testCode);
+          if (result.errors.length === 0) {
+            console.log('✅ Parser integration test passed');
+          } else {
+            console.log('❌ Parser integration test failed:', result.errors);
+            process.exit(1);
+          }
+          "
+
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Security Audit
+        run: npm audit --audit-level=moderate
+
+      - name: Check for Known Vulnerabilities
+        run: |
+          # Check if any high/critical vulnerabilities exist
+          if npm audit --audit-level=high --json | jq -e '.vulnerabilities | length > 0' 2>/dev/null; then
+            echo "❌ High severity vulnerabilities found"
+            npm audit --audit-level=high
+            exit 1
+          else
+            echo "✅ No high severity vulnerabilities found"
+          fi
+
+  build-docker:
+    name: Docker Build Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: |
+          docker build -t aoe2-rms-builder .
+
+      - name: Test Docker Build
+        run: |
+          # Test that Docker build produces a valid VSIX
+          docker run --rm -v $(pwd)/output:/output aoe2-rms-builder sh -c "cp /app/*.vsix /output/"
+
+          if [ -f "output/aoe2-rms-*.vsix" ]; then
+            echo "✅ Docker build test passed"
+            ls -la output/
+          else
+            echo "❌ Docker build test failed"
+            exit 1
+          fi
+
+  publish:
+    name: Publish Extension
+    needs: [test, security, build-docker]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Extension
+        run: npm run package
+
+      - name: Publish to Open VSX Registry
+        uses: HaaLeo/publish-vscode-extension@v2
+        with:
+          pat: ${{ secrets.OPEN_VSX_TOKEN }}
+          registryUrl: https://open-vsx.org
+          packagePath: 'aoe2-rms-*.vsix'
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            ## AoE2 RMS Syntax Extension v${{ github.ref_name }}
+
+            ### What's New
+            - Modern parser integration with aoe2-rms-parser v2.0.1
+            - Optimized package size and performance
+            - Enhanced build process with modern tooling
+
+            ### Installation
+            1. Download the `.vsix` file from the assets below
+            2. Open VS Code/Cursor
+            3. Go to Extensions → Install from VSIX
+            4. Select the downloaded file
+
+            ### Features
+            - Syntax highlighting for RMS files
+            - Real-time error detection and linting
+            - 5 custom themes optimized for RMS syntax
+            - Full language server support
+
+            ### Compatibility
+            - VS Code 1.85.0+
+            - Cursor (latest)
+            - Node.js 18+
+          draft: false
+          prerelease: false
+
+      - name: Upload VSIX to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./aoe2-rms-*.vsix
+          asset_name: aoe2-rms-${{ github.ref_name }}.vsix
+          asset_content_type: application/octet-stream

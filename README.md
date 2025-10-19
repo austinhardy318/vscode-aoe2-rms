@@ -55,7 +55,7 @@ Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support for VS Code 
 
 - Node.js 18+
 - VS Code 1.85.0+
-- Docker (for building)
+- Docker (optional, for containerized builds)
 
 ### Quick Build
 
@@ -68,6 +68,35 @@ npm install
 npm run compile
 npm run package
 ```
+
+### Testing
+
+The project includes comprehensive testing:
+
+```bash
+# Run all tests
+npm test
+
+# Run specific test suites
+npm run test:parser      # Parser integration tests
+npm run test:extension   # Extension validation tests
+npm run test:integration # Full integration tests
+
+# CI simulation
+npm run ci:test          # Same tests as CI
+npm run ci:build         # Full CI build process
+```
+
+### CI/CD
+
+The project uses GitHub Actions for automated testing and deployment:
+
+- **Continuous Integration**: Tests on multiple OS/Node.js versions
+- **Security Auditing**: Automated vulnerability scanning
+- **Docker Testing**: Containerized build verification
+- **Automated Publishing**: Releases to Open VSX Registry
+
+See [CI/CD Documentation](docs/CI_CD.md) for detailed information.
 
 ### Creating Releases
 
