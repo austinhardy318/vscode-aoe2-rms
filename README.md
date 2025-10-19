@@ -39,6 +39,30 @@ This is a modernized fork of the original [AoE2 Random Map Scripting extension](
 - **Error Detection** - Real-time linting and error reporting using the Mangudai parser
 - **IntelliSense** - Basic language support for RMS files
 - **Multi-root Workspace** - Works with VS Code's multi-root workspace feature
+- **Custom Themes** - Four built-in themes optimized for RMS syntax (Dark, Light, Vibrant, Monokai)
+
+## Custom Themes
+
+This extension includes four custom themes specifically designed for RMS files:
+
+### Available Themes
+
+- **AoE2 RMS Dark** - Blue section headers, teal commands, optimized for dark environments
+- **AoE2 RMS Light** - High contrast colors, perfect for daytime coding
+- **AoE2 RMS Vibrant** - Bright, colorful palette for creative coding sessions
+- **AoE2 RMS Monokai** - Classic Monokai-inspired theme for RMS syntax
+
+### How to Use Themes
+
+1. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
+2. Type "Preferences: Color Theme"
+3. Select one of the AoE2 RMS themes from the list
+
+For more details, see the [Themes Documentation](themes/README.md).
+
+## Testing
+
+See [TESTING.md](TESTING.md) for comprehensive testing instructions including both core functionality and custom themes.
 
 ## Release Notes
 
@@ -60,7 +84,7 @@ This fork is based on the original extension by Mangudai. See the [original repo
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 - VS Code 1.85.0+
 - Docker Desktop (for Docker builds)

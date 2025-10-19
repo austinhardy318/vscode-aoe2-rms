@@ -1,0 +1,86 @@
+{
+  "name": "AoE2 RMS Light",
+  "type": "light",
+  "colors": {
+    "editor.background": "#ffffff",
+    "editor.foreground": "#000000"
+  },
+  "tokenColors": [
+    {
+      "name": "RMS Section Headers",
+      "scope": "storage.type.section.aoe2-rms",
+      "settings": {
+        "foreground": "#0000ff",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Commands",
+      "scope": "entity.name.function.aoe2-rms",
+      "settings": {
+        "foreground": "#008000",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Attributes",
+      "scope": "variable.parameter.attribute.aoe2-rms",
+      "settings": {
+        "foreground": "#000080"
+      }
+    },
+    {
+      "name": "RMS Numbers",
+      "scope": "constant.numeric.aoe2-rms",
+      "settings": {
+        "foreground": "#800000"
+      }
+    },
+    {
+      "name": "RMS Conditionals",
+      "scope": "keyword.control.conditional.aoe2-rms",
+      "settings": {
+        "foreground": "#800080",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Random Blocks",
+      "scope": "keyword.control.random.aoe2-rms",
+      "settings": {
+        "foreground": "#808000",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Identifiers",
+      "scope": "variable.other.const.aoe2-rms",
+      "settings": {
+        "foreground": "#008080"
+      }
+    },
+    {
+      "name": "RMS Comments",
+      "scope": "comment.block.aoe2-rms",
+      "settings": {
+        "foreground": "#008000",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "RMS Directives",
+      "scope": "keyword.other.directive.aoe2-rms",
+      "settings": {
+        "foreground": "#ff8000",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Punctuation",
+      "scope": "punctuation.definition.mapping.aoe2-rms",
+      "settings": {
+        "foreground": "#000000"
+      }
+    }
+  ]
+}

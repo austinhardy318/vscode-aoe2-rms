@@ -1,0 +1,86 @@
+{
+  "name": "AoE2 RMS Dark",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#1e1e1e",
+    "editor.foreground": "#d4d4d4"
+  },
+  "tokenColors": [
+    {
+      "name": "RMS Section Headers",
+      "scope": "storage.type.section.aoe2-rms",
+      "settings": {
+        "foreground": "#569cd6",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Commands",
+      "scope": "entity.name.function.aoe2-rms",
+      "settings": {
+        "foreground": "#4ec9b0",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Attributes",
+      "scope": "variable.parameter.attribute.aoe2-rms",
+      "settings": {
+        "foreground": "#9cdcfe"
+      }
+    },
+    {
+      "name": "RMS Numbers",
+      "scope": "constant.numeric.aoe2-rms",
+      "settings": {
+        "foreground": "#b5cea8"
+      }
+    },
+    {
+      "name": "RMS Conditionals",
+      "scope": "keyword.control.conditional.aoe2-rms",
+      "settings": {
+        "foreground": "#c586c0",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Random Blocks",
+      "scope": "keyword.control.random.aoe2-rms",
+      "settings": {
+        "foreground": "#dcdcaa",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Identifiers",
+      "scope": "variable.other.const.aoe2-rms",
+      "settings": {
+        "foreground": "#4fc1ff"
+      }
+    },
+    {
+      "name": "RMS Comments",
+      "scope": "comment.block.aoe2-rms",
+      "settings": {
+        "foreground": "#6a9955",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "RMS Directives",
+      "scope": "keyword.other.directive.aoe2-rms",
+      "settings": {
+        "foreground": "#ce9178",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "RMS Punctuation",
+      "scope": "punctuation.definition.mapping.aoe2-rms",
+      "settings": {
+        "foreground": "#d4d4d4"
+      }
+    }
+  ]
+}

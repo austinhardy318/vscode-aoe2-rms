@@ -43,13 +43,35 @@
 				"configuration": "./language-configuration.json"
 			}
 		],
-		"grammars": [
-			{
-				"language": "aoe2-rms",
-				"scopeName": "source.aoe2-rms",
-				"path": "./aoe2-rms.tmLanguage"
-			}
-		]
+        "grammars": [
+          {
+            "language": "aoe2-rms",
+            "scopeName": "source.aoe2-rms",
+            "path": "./aoe2-rms.tmLanguage"
+          }
+        ],
+        "themes": [
+          {
+            "label": "AoE2 RMS Dark",
+            "uiTheme": "vs-dark",
+            "path": "./themes/aoe2-rms-dark.json"
+          },
+          {
+            "label": "AoE2 RMS Light",
+            "uiTheme": "vs",
+            "path": "./themes/aoe2-rms-light.json"
+          },
+          {
+            "label": "AoE2 RMS Vibrant",
+            "uiTheme": "vs-dark",
+            "path": "./themes/aoe2-rms-vibrant.json"
+          },
+          {
+            "label": "AoE2 RMS Monokai",
+            "uiTheme": "vs-dark",
+            "path": "./themes/aoe2-rms-monokai.json"
+          }
+        ]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
