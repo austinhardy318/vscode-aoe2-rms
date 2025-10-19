@@ -1,6 +1,7 @@
 {
 	"name": "aoe2-rms",
 	"displayName": "AoE2 RMS Syntax",
+	"type": "module",
 	"description": "Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support - Modernized fork",
 	"author": "Mangudai (original), Austin (modernized)",
 	"license": "MIT",
@@ -94,8 +95,8 @@
 		"package": "vsce package",
 		"build:docker": "docker build -t aoe2-rms-builder . && docker run --name aoe2-rms-extract aoe2-rms-builder && docker cp aoe2-rms-extract:/output/. ./output/ && docker rm aoe2-rms-extract",
 		"test": "npm run test:parser && npm run test:extension",
-		"test:parser": "node scripts/test-parser.js",
-		"test:extension": "node scripts/test-extension.js",
+		"test:parser": "node scripts/test-parser.cjs",
+		"test:extension": "node scripts/test-extension.cjs",
 		"test:integration": "npm run compile && npm run package && npm run test:parser",
 		"security:audit": "npm audit --audit-level=moderate",
 		"security:fix": "npm audit fix",
@@ -105,13 +106,16 @@
 	"devDependencies": {
 		"@types/mocha": "^10.0.6",
 		"@types/node": "^20.10.0",
-		"@typescript-eslint/eslint-plugin": "^6.13.1",
-		"@typescript-eslint/parser": "^6.13.1",
+		"@typescript-eslint/eslint-plugin": "^8.46.1",
+		"@typescript-eslint/parser": "^8.46.1",
 		"@vscode/test-electron": "^2.3.8",
 		"@vscode/vsce": "^3.6.2",
 		"esbuild": "^0.25.11",
-		"eslint": "^8.55.0",
+		"eslint": "^9.38.0",
+		"glob": "^11.0.3",
+		"globals": "^16.4.0",
 		"prettier": "^3.1.1",
+		"rimraf": "^6.0.1",
 		"typescript": "^5.3.3"
 	}
 }
