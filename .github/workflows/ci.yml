@@ -47,10 +47,10 @@ jobs:
         run: |
           # Test that the VSIX can be installed
           if [ -f "aoe2-rms-*.vsix" ]; then
-            echo "✅ VSIX package created successfully"
+            echo "VSIX package created successfully"
             ls -la *.vsix
           else
-            echo "❌ VSIX package not found"
+            echo "VSIX package not found"
             exit 1
           fi
 
@@ -68,9 +68,9 @@ jobs:
           const testCode = '<PLAYER_SETUP>\n  random_placement\n</PLAYER_SETUP>';
           const result = parse(testCode);
           if (result.errors.length === 0) {
-            console.log('✅ Parser integration test passed');
+            console.log('Parser integration test passed');
           } else {
-            console.log('❌ Parser integration test failed:', result.errors);
+            console.log('Parser integration test failed:', result.errors);
             process.exit(1);
           }
           "
@@ -99,11 +99,11 @@ jobs:
         run: |
           # Check if any high/critical vulnerabilities exist
           if npm audit --audit-level=high --json | jq -e '.vulnerabilities | length > 0' 2>/dev/null; then
-            echo "❌ High severity vulnerabilities found"
+            echo "High severity vulnerabilities found"
             npm audit --audit-level=high
             exit 1
           else
-            echo "✅ No high severity vulnerabilities found"
+            echo "No high severity vulnerabilities found"
           fi
 
   build-docker:
@@ -125,18 +125,18 @@ jobs:
         run: |
           # Create output directory
           mkdir -p output
-          
+
           # Test that Docker build produces a valid VSIX
           docker run --rm -v $(pwd)/output:/output aoe2-rms-builder sh -c "find /app -name '*.vsix' -exec cp {} /output/ \;"
-          
+
           # Check if any VSIX files were created
           if ls output/*.vsix 1> /dev/null 2>&1; then
-            echo "✅ Docker build test passed"
+            echo "Docker build test passed"
             ls -la output/
             echo "VSIX files found:"
             ls -la output/*.vsix
           else
-            echo "❌ Docker build test failed - no VSIX files found"
+            echo "Docker build test failed - no VSIX files found"
             echo "Contents of output directory:"
             ls -la output/
             echo "Contents of Docker container:"
