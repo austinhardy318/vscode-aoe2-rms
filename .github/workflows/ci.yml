@@ -55,7 +55,10 @@ jobs:
           echo "Build completed. VSIX file created:"
           ls -la *.vsix
           echo "Testing extension installation..."
-          if [ -f "aoe2-rms-*.vsix" ]; then
+          echo "Current directory: $(pwd)"
+          echo "Files matching pattern:"
+          ls -la aoe2-rms-*.vsix || echo "No files match pattern"
+          if ls aoe2-rms-*.vsix 1> /dev/null 2>&1; then
             echo "VSIX package created successfully"
             ls -la *.vsix
           else
