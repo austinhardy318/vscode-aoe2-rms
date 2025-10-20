@@ -48,15 +48,12 @@ jobs:
           echo "Server files:"
           ls -la server/out/ || echo "No server/out directory found"
 
-      - name: Build Extension
+      - name: Build and Test Extension
         run: |
           echo "Building extension..."
           npm run package
           echo "Build completed. VSIX file created:"
           ls -la *.vsix
-
-      - name: Test Extension Installation
-        run: |
           echo "Testing extension installation..."
           if [ -f "aoe2-rms-*.vsix" ]; then
             echo "VSIX package created successfully"
@@ -65,10 +62,7 @@ jobs:
             echo "VSIX package not found"
             exit 1
           fi
-
-      - name: Validate Package Contents
-        run: |
-          # Check package contents
+          echo "Validating package contents..."
           unzip -l aoe2-rms-*.vsix | head -20
           echo "Package validation completed"
 
