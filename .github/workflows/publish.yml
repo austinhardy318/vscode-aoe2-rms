@@ -1,0 +1,58 @@
+name: Publish Extension
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish to Marketplaces
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Extension
+        run: |
+          npm run compile
+          npm run package
+          echo "Extension built successfully"
+
+      - name: Publish to Open VSX Registry
+        env:
+          OPENVSX_TOKEN: ${{ secrets.OPENVSX_TOKEN }}
+        run: |
+          npm install -g @openvsx/cli
+          ovsx publish aoe2-rms-*.vsix --pat $OPENVSX_TOKEN
+
+      - name: Upload VSIX for Cursor Submission
+        uses: actions/upload-artifact@v4
+        with:
+          name: aoe2-rms-extension
+          path: aoe2-rms-*.vsix
+          retention-days: 30
+
+      - name: Create Release Notes
+        run: |
+          echo "## Extension Published Successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Published to:" >> $GITHUB_STEP_SUMMARY
+          echo "- Open VSX Registry (VS Code compatible)" >> $GITHUB_STEP_SUMMARY
+          echo "- VSIX file uploaded for Cursor submission" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps:" >> $GITHUB_STEP_SUMMARY
+          echo "1. Download the VSIX file from artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "2. Submit to Cursor marketplace manually" >> $GITHUB_STEP_SUMMARY
+          echo "3. Update README with marketplace links" >> $GITHUB_STEP_SUMMARY
