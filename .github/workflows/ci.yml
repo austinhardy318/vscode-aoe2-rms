@@ -38,13 +38,36 @@ jobs:
         run: npm run format:check
 
       - name: Type Check
-        run: npm run compile
+        run: |
+          echo "Compiling TypeScript..."
+          npm run compile
+          echo "Compilation completed. Checking compiled files..."
+          echo "Client files:"
+          ls -la client/out/ || echo "No client/out directory found"
+          echo "Server files:"
+          ls -la server/out/ || echo "No server/out directory found"
 
       - name: Build Extension
-        run: npm run package
+        run: |
+          echo "Building extension..."
+          echo "Checking if vsce is available..."
+          npx vsce --version || echo "vsce not found, trying npm run package"
+          echo "Running package command..."
+          npm run package
+          echo "Build completed. Checking for VSIX files..."
+          ls -la *.vsix || echo "No VSIX files found in current directory"
+          echo "Contents of current directory:"
+          ls -la
 
       - name: Test Extension Installation
         run: |
+          echo "Testing extension installation..."
+          echo "Current directory contents:"
+          ls -la
+          echo "Looking for VSIX files..."
+          ls -la *.vsix || echo "No VSIX files found"
+          echo "Checking with find command..."
+          find . -name "*.vsix" -type f || echo "No VSIX files found with find"
           # Test that the VSIX can be installed
           if [ -f "aoe2-rms-*.vsix" ]; then
             echo "VSIX package created successfully"
