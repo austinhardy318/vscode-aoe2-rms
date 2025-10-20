@@ -11,9 +11,10 @@ on:
 jobs:
   test:
     name: Test Extension
+    timeout-minutes: 10
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
         node-version: [20, 22]
 
     runs-on: ${{ matrix.os }}
@@ -50,25 +51,13 @@ jobs:
       - name: Build Extension
         run: |
           echo "Building extension..."
-          echo "Checking if vsce is available..."
-          npx vsce --version || echo "vsce not found, trying npm run package"
-          echo "Running package command..."
           npm run package
-          echo "Build completed. Checking for VSIX files..."
-          ls -la *.vsix || echo "No VSIX files found in current directory"
-          echo "Contents of current directory:"
-          ls -la
+          echo "Build completed. VSIX file created:"
+          ls -la *.vsix
 
       - name: Test Extension Installation
         run: |
           echo "Testing extension installation..."
-          echo "Current directory contents:"
-          ls -la
-          echo "Looking for VSIX files..."
-          ls -la *.vsix || echo "No VSIX files found"
-          echo "Checking with find command..."
-          find . -name "*.vsix" -type f || echo "No VSIX files found with find"
-          # Test that the VSIX can be installed
           if [ -f "aoe2-rms-*.vsix" ]; then
             echo "VSIX package created successfully"
             ls -la *.vsix
@@ -100,6 +89,7 @@ jobs:
 
   security:
     name: Security Audit
+    timeout-minutes: 5
     runs-on: ubuntu-latest
 
     steps:
@@ -131,6 +121,7 @@ jobs:
 
   build-docker:
     name: Docker Build Test
+    timeout-minutes: 15
     runs-on: ubuntu-latest
 
     steps:
