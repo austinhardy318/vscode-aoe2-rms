@@ -16,8 +16,18 @@ docs/**
 scripts/**
 samples/**
 themes/theme-switcher.js
+themes/theme-switcher.cjs
+themes/README.md
 Dockerfile
 .dockerignore
 .github/**
 **/package-lock.json
 **/tsconfig.tsbuildinfo
+README.md
+**/README.md
+tsconfig.base.json
+eslint.config.js
+MOUNTAIN PASS.rms
+client/screenshot.png
+client/package.json
+server/package.json

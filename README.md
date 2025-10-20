@@ -33,6 +33,8 @@ Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support for VS Code 
 - **IntelliSense** - Basic language support for RMS files
 - **Multi-root Workspace** - Works with VS Code's multi-root workspace feature
 - **Custom Themes** - Five built-in themes optimized for RMS syntax
+- **Comment Support** - Native VS Code block comment shortcut:
+  - `Ctrl+Shift+/` - Toggle block comments (`/* */`)
 
 ## Custom Themes
 
