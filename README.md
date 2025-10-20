@@ -1,14 +1,10 @@
 # AoE2 RMS Syntax
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)
-![VS Code Extension](https://img.shields.io/badge/VS%20Code-Extension-green.svg)
 ![VS Code Marketplace](https://img.shields.io/badge/VS%20Code-Marketplace-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-orange.svg)
+![CI](https://github.com/austinhardy318/vscode-aoe2-rms/workflows/CI%2FCD%20Pipeline/badge.svg)
 ![GitHub release](https://img.shields.io/github/v/release/austinhardy318/vscode-aoe2-rms)
-![Node.js](https://img.shields.io/badge/Node.js-20+-green.svg)
-![ESLint](https://img.shields.io/badge/ESLint-9+-purple.svg)
-![Prettier](https://img.shields.io/badge/Prettier-Code%20Formatter-pink.svg)
 
 > Age of Empires 2 (AoE2) Random Map Scripting (RMS) language support for VS Code and Cursor
 

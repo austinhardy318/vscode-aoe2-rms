@@ -71,11 +71,12 @@ jobs:
 
       - name: Test Parser Integration
         run: |
-          # Test that the parser is working
+          # Test that the parser is working with sample file
           node -e "
           const { parse } = require('./server/node_modules/aoe2-rms-parser');
-          const testCode = '<PLAYER_SETUP>\n  random_placement\n</PLAYER_SETUP>';
-          const result = parse(testCode);
+          const fs = require('fs');
+          const sampleCode = fs.readFileSync('./samples/test.rms', 'utf8');
+          const result = parse(sampleCode);
           if (result.errors.length === 0) {
             console.log('Parser integration test passed');
           } else {
