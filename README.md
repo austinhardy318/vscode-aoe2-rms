@@ -1,7 +1,7 @@
 # AoE2 RMS Syntax
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)
-![VS Code Marketplace](https://img.shields.io/badge/VS%20Code-Marketplace-blue.svg)
+[![Open VSX](https://img.shields.io/badge/VS%20Code-Open%20VSX-blue.svg)](https://open-vsx.org/extension/austinhardy318/aoe2-rms)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![CI](https://github.com/austinhardy318/vscode-aoe2-rms/workflows/CI%2FCD%20Pipeline/badge.svg)
 ![GitHub release](https://img.shields.io/github/v/release/austinhardy318/vscode-aoe2-rms)
@@ -34,9 +34,16 @@ Modern VS Code and Cursor extension for Age of Empires 2 Random Map Scripting (R
 
 ### From Marketplace (Recommended)
 
-For both VS Code and Cursor:
+#### VS Code (Open VSX Registry)
 
-1. Open your editor (VS Code or Cursor)
+1. Open VS Code
+2. Press `Ctrl+Shift+X` (or `Cmd+Shift+X` on Mac) to open Extensions
+3. Search for "AoE2 RMS Syntax" or visit: [Open VSX Registry](https://open-vsx.org/extension/austinhardy318/aoe2-rms)
+4. Click **Install**
+
+#### Cursor
+
+1. Open Cursor
 2. Press `Ctrl+Shift+X` (or `Cmd+Shift+X` on Mac) to open Extensions
 3. Search for "AoE2 RMS Syntax"
 4. Click **Install**
@@ -196,6 +203,7 @@ Modern VS Code and Cursor extension for Age of Empires 2 Random Map Scripting
 ### Resources
 
 - **Repository**: [https://github.com/austinhardy318/vscode-aoe2-rms](https://github.com/austinhardy318/vscode-aoe2-rms)
+- **Marketplace**: [Open VSX Registry](https://open-vsx.org/extension/austinhardy318/aoe2-rms)
 - **Issues**: [https://github.com/austinhardy318/vscode-aoe2-rms/issues](https://github.com/austinhardy318/vscode-aoe2-rms/issues)
 - **Releases**: [https://github.com/austinhardy318/vscode-aoe2-rms/releases](https://github.com/austinhardy318/vscode-aoe2-rms/releases)
 - **Parser**: [aoe2-rms-parser](https://github.com/austinhardy318/aoe2-rms-parser)
